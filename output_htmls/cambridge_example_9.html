@@ -1,0 +1,229 @@
+
+    <html>
+    <head>
+    <style>
+    .media-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Ensures consistent column widths */
+    }
+    .media-table td {
+        text-align: center;
+        vertical-align: top;
+        padding: 10px;
+    }
+    .media-table img, .media-table video {
+      width: 100%;
+      height: auto;
+      border: 4px solid;
+      display: block;
+    }
+    .media-table h5 {
+        margin: 5px 0;
+    }
+    /* Header Styling */
+        .site-header {{
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }}
+
+        /* Footer Styling */
+        .site-footer {{
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }}
+
+        /* Navigation Link Styling */
+        .nav-link, .footer-link {{
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }}
+
+        /* Hover Effect */
+        .nav-link:hover, .footer-link:hover {{
+            color: #69ccec; /* Changes color on hover */
+        }}
+
+        /* Optional: Responsive Design */
+        @media (max-width: 600px) {{
+            .nav-link, .footer-link {{
+                font-size: 14px;
+            }}
+        }}
+    </style>
+    </head>
+    <body>
+    
+    <!-- Header with "Go Back" Link -->
+    <header class="site-header">
+        <nav>
+            <a href="../more_visualization_page.html" class="nav-link">Go Back</a>
+        </nav>
+    </header><h3>Cambridge Landmarks example No.9</h3>
+<h4>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th></th>
+                <th>DUSt3R</th>
+                <th>Ours</th>
+                <th>Ours</th>
+                <th>Ours</th>
+            </tr>
+            <tr>
+                <td>Input</td>
+                <td>Pair</td>
+                <td>DynamiCrafter</td>
+                <td>Runway</td>
+                <td>Dream Machine</td>
+            </tr>
+            <tr>
+                <td>Rotation Geodesic Error</td>
+                <td>13.11</td>
+                <td>45.25</td>
+                <td>5.97</td>
+                <td>2.37</td>
+            </tr>
+            <tr>
+                <td>Selected Video</td>
+                <td>--</td>
+                <td>video 0</td>
+                <td>video 1</td>
+                <td>video 3</td>
+            </tr>
+        </table>
+        </h4>
+<table class="media-table"><tr>
+<td>
+<img src="../output_videos/cambridge/3454_image1.jpg" alt="Image1" style="border: 4px solid rgb(69, 204, 236);"/>
+<h5>Image A</h5>
+</td>
+<td>
+<img src="../output_videos/cambridge/3454_image2.jpg" alt="Image2" style="border: 4px solid rgb(255, 192, 0);"/>
+<h5>Image B</h5>
+</td></tr><tr>
+<th>Video 0 from Image A to B (Original order)</th>
+<th>Video 1 from Image B to A (Flipped order)</th>
+<th>Video 2 from Image A to B (Original order)</th>
+<th>Video 3 from Image B to A (Flipped order)</th>
+</tr><tr>
+<td>Prompt 0: A picturesque view of a historic building and courtyard under a clear sky.</td>
+<td>Prompt 1: A historic and majestic university building stands gracefully under varying sunlight.</td>
+<td>Prompt 2: The scene shows a historic, Gothic-style college building with tall spires and large windows, surrounded by a well-kept lawn and courtyard, including an ornate fountain-like structure under a sunny blue sky.</td>
+<td>Prompt 3: The images show a historic, grand courtyard with a green lawn, surrounded by majestic stone buildings featuring tall towers and detailed architectural designs, under a clear blue sky.</td>
+</tr><tr>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 5px solid rgb(55, 128, 55);">
+                    <source src="../output_videos/cambridge/3454_DynamiCrafter_subset_v0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h4>DynamiCrafter: Generated Video 0  with original order (Selected)</h4>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_DynamiCrafter_subset_v1_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>DynamiCrafter: Generated Video 1 with flip order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_DynamiCrafter_subset_v2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>DynamiCrafter: Generated Video 2  with original order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_DynamiCrafter_subset_v3_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>DynamiCrafter: Generated Video 3 with flip order</h5>
+</td>
+</tr><tr>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Runway_subset_v0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Runway: Generated Video 0  with original order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 5px solid rgb(55, 128, 55);">
+                    <source src="../output_videos/cambridge/3454_Runway_subset_v1_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h4>Runway: Generated Video 1 with flip order (Selected)</h4>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Runway_subset_v2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Runway: Generated Video 2  with original order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Runway_subset_v3_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Runway: Generated Video 3 with flip order</h5>
+</td>
+</tr><tr>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Drean_Machine_subset_v0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Drean Machine: Generated Video 0  with original order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Drean_Machine_subset_v1_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Drean Machine: Generated Video 1 with flip order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 3px solid rgb(128, 128, 128);">
+                    <source src="../output_videos/cambridge/3454_Drean_Machine_subset_v2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h5>Drean Machine: Generated Video 2  with original order</h5>
+</td>
+<td>
+
+                <video autoplay loop muted controls loading="lazy" style="border: 5px solid rgb(55, 128, 55);">
+                    <source src="../output_videos/cambridge/3454_Drean_Machine_subset_v3_flip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+<h4>Drean Machine: Generated Video 3 with flip order (Selected)</h4>
+</td>
+</tr><tr>
+</tr></table>
+<br/>
+<!-- Footer with "Go Back" Link -->
+    <footer class="site-footer">
+        <nav>
+            <a href="../more_visualization_page.html" class="footer-link">Go Back</a>
+        </nav>
+    </footer></body></html>

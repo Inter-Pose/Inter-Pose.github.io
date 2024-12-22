@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Yes. In this work, we found that the additional context from the generated videos consistently helped a state-of-the-art pose estimator.">
+  <meta name="keywords" content="Video generation model, Camera pose estimation, InterPose">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Can Generative Video Models Help Pose Estimation?</title>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <meta property="og:image" content="https://www.cs.cornell.edu/~ruojin/GenVid2Pose/static/images/teaser.jpg">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Can Generative Video Models Help Pose Estimation?">
+  <meta name="twitter:description"
+    content="Yes! We find that off-the-shelf generative video models can hallucinate plausible intermediate frames that provide useful context for pose estimators (e.g. DUSt3R), especially for images with little to no overlap.">
+  <meta name="twitter:image" content="https://www.cs.cornell.edu/~ruojin/GenVid2Pose/static/images/teaser.jpg">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175559969-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-175559969-1');
+  </script>
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Can Generative Video Models Help Pose Estimation?</h1>          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~ruojin/">Ruojin Cai</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jasonyzhang.com/">Jason Y. Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://henzler.github.io/">Philipp Henzler</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhengqili.github.io/">Zhengqi Li</a><sup>1</sup>,
+            </span>            
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~snavely/">Noah Snavely</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ricardomartinbrualla.com/">Ricardo Martin-Brualla</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Google,</span>
+            <span class="author-block"><sup>2</sup>Cornell University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">              
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Coming soon)</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Check back later</span>
+                </a>
+              </span>
+            <!-- <h2 class="subtitle is-size-4 has-text-centered"> arXiv preprint, 2024 </h2> -->
+          </div>
+        </div>
+      </div>      
+    </div>
+    <div class="column is-centered rounded">
+      <div class="notification is-info is-light" style="
+                                    text-align: center;
+                                    padding-bottom: 5px;
+                                    padding-top: 5px;
+                                  ">
+        <h6 style="text-align: center; color: rgb(0, 0, 0)">
+          <strong>Yes!</strong> We find that off-the-shelf generative video models can hallucinate plausible intermediate frames that provide
+          useful context for pose estimators (e.g. DUSt3R), especially for images with little to no overlap.
+        </h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+    <div class="hero-body">     
+      <div class="container is-max-desktop">
+      <video id="teaser" autoplay muted loop playsinline height="95%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Estimating the relative camera pose from two images with minimal overlap is challenging for existing methods that rely
+        on visual correspondences (left). 
+        We propose <strong>InterPose</strong>, which uses an off-the-shelf video generation model to interpolate a video connecting the two images.
+        These generated frames enhance pose estimators (e.g. DUSt3R), enabling more accurate and reliable pose estimation (right).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">  
+  <div class="hero-body">    
+    <div class="container is-max-desktop">      
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+        <h2 id="results" class="title is-3 has-text-centered">Example Results</h2>
+        <div class="legend-container">
+          <div class="legend-item">
+            <span class="legend-color color-blue"></span>
+            <span>Camera for Image A</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color color-gold"></span>
+            <span>Predicted Camera for Image B</span>
+          </div>
+        </div>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-1">
+            <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/results1.mp4" type="video/mp4">
+            </video>
+          </div>                
+          <div class="item item-3">
+            <video poster="" id="3" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/results3.mp4" type="video/mp4">
+            </video>
+          </div>          
+          <div class="item item-4">
+            <video poster="" id="4" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/results4.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-2">
+            <video poster="" id="2" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/results2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Pairwise pose estimation from images with little or no overlap is an open challenge in computer vision. Existing
+            methods, even those trained on large-scale datasets, struggle in these scenarios due to the lack of identifiable
+            correspondences or visual overlap. Inspired by the human ability to infer spatial relationships from diverse scenes, we
+            propose a novel approach that leverages the rich priors encoded within pre-trained generative video models. We propose
+            to use a video model to hallucinate intermediate frames between two input images, effectively creating a dense, visual
+            transition, which significantly simplifies the problem of pose estimation.
+            Since current video models can still produce implausible motion or inconsistent geometry, we introduce a
+            self-consistency score that evaluates the consistency of pose predictions from sampled videos.
+            We demonstrate that our approach generalizes among three state-of-the-art video models and show consistent improvements
+            over the state-of-the-art DUSt3R on four diverse datasets encompassing indoor, outdoor, and object-centric
+            scenes.
+            Our findings suggest a promising avenue for improving pose estimation models by leveraging large generative models
+            trained on vast amounts of video data, which is more readily available than 3D data.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Given two images, our goal is to recover their relative camera pose. We introduce <strong>InterPose</strong>, which leverages off-the-shelf video
+            models to generate the intermediate frames between the two images. 
+            By using these generated frames alongside the
+            original image pair as input to a camera pose estimator, we provide additional context that can improve pose estimation
+            compared to using only the two input images.
+            A key challenge is that the generated videos
+            may contain visual artifacts or implausible motion. Thus, we generate multiple videos which we score using a
+            self-consistency metric to select the best video sample.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Challenge. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-5">Video Generation for Pose Estimation: Benefits and Challenges</h2>
+        <video id="failure-mode" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/failure_mode.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-justified">          
+          <p>
+          We propose to use a video model to hallucinate intermediate frames between two input images, effectively creating a dense visual
+          transition, which significantly simplifies the problem of pose estimation.
+          However, a key challenge persists: generated videos may contain visual inconsistencies, like morphing or shot cuts, which can degrade pose estimation performance.
+          We show some examples of common failure modes of video models.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Method: Self-consistency Score. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-5">Selecting Visually Consistent Videos with a Self-consistency Score</h2>
+        <video id="self-consistency" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/self-consistency_score.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-justified">
+          <p>
+            One approach is to sample multiple such video interpolations, with the hope that one displays a plausible interpretation
+            of the scene that is 3D consistent.            
+            <i>However, how do we tell which video sample is a good one?</i> <br>
+            Consider a low-quality video that has rapid shot-cuts or inconsistent geometry, like Video 0. Selecting
+            different subsets of frames from that video would likely produce dramatically different pose estimations. We
+            operationalize this concept by measuring a video's <b>self-consistency</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quantitative results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">          
+          <p>
+            We demonstrate that our approach generalizes among three state-of-the-art video models and show consistent improvements
+            over the state-of-the-art DUSt3R on four diverse datasets encompassing indoor, outdoor, and object-centric
+            scenes.
+          </p>
+        </div>
+        <!-- <h2 class="title is-4">Dataset and Benchmark</h2>-->
+        <h2 class="title is-5">Quantitative Results</h2> 
+        <img src="static/images/quantitative_results.png" class="center" alt="problem_define" width="100%">
+        <div class="content has-text-justified">
+          <p>
+            Our approach, integrating generative video models with DUSt3R, consistently achieves better
+            performance than using only the original image pair as input (DUSt3R - Pair) across all datasets, achieving lower rotation and translation errors.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Qualitative Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 id="quantitative-results" class="title is-5">Qualitative Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Check out the webpages for <a href="./output_htmls/dust3r_pointcloud_visualization.html" target="_blank">DUSt3R
+              interactive point clouds</a>
+            and
+            <a href="./more_visualization_page.html" target="_blank">more examples on four datasets</a>.
+            <!-- <a href="#quantitative-results">Check out the webpage for more examples on four datasets.</a> -->
+          </p>
+        </div>
+    
+        <!-- Use Bulma's `columns` and `column` classes here -->
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <p><a href="./output_htmls/dust3r_pointcloud_visualization.html" target="_blank">DUSt3R
+              interactive point clouds</a></p>
+            <a href="./output_htmls/dust3r_pointcloud_visualization.html" target="_blank">
+              <img src="static/images/dust3r_point_cloud.png" class="image" alt="DUSt3R Point Cloud" />
+            </a>
+          </div>
+          <div class="column is-half">
+            <p><a href="./more_visualization_page.html" target="_blank">more examples on four datasets</a></p>
+            <a href="./more_visualization_page.html" target="_blank">
+              <img src="static/images/more_visualization_page.png" class="image" alt="More Visualizations" />
+            </a>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Acknowledgements</h2>
+    We would like to thank Keunhong Park, Matthew Levine, and Aleksander Hołynski for their feedback and suggestions.
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container" align="center">
+    <div class="column is-8">
+      <div class="content">
+        <p>
+          This website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
